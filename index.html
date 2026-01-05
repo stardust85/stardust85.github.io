@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Master</title>
+    <style>
+        /* CSS: Making it look fun and kid-friendly */
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #game-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+            border: 5px solid #4CAF50;
+        }
+
+        h1 { color: #ff6f61; }
+
+        #question {
+            font-size: 48px;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        input {
+            font-size: 24px;
+            width: 100px;
+            padding: 10px;
+            text-align: center;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        button:active { transform: scale(0.95); }
+
+        #feedback {
+            margin-top: 20px;
+            font-weight: bold;
+            height: 24px;
+        }
+
+        #score-board {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .correct { color: #4CAF50; }
+        .wrong { color: #f44336; }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <h1>Math Stars! 🌟</h1>
+    
+    <div id="question">? x ?</div>
+    
+    <input type="number" id="answer" placeholder="?" autofocus>
+    
+    <button onclick="checkAnswer()">Check Answer!</button>
+    
+    <div id="feedback"></div>
+    
+    <div id="score-board">
+        Score: <span id="score">0</span> | Streak: <span id="streak">0</span>
+    </div>
+</div>
+
+<script>
+    // JavaScript: The logic of the game
+    let num1, num2, correctAnswer;
+    let score = 0;
+    let streak = 0;
+
+    const questionElement = document.getElementById('question');
+    const answerInput = document.getElementById('answer');
+    const feedbackElement = document.getElementById('feedback');
+    const scoreElement = document.getElementById('score');
+    const streakElement = document.getElementById('streak');
+
+    // Function to generate a new question
+    function generateQuestion() {
+        // You can change "12" to "5" for younger kids
+        num1 = Math.floor(Math.random() * 12) + 1;
+        num2 = Math.floor(Math.random() * 12) + 1;
+        correctAnswer = num1 * num2;
+        
+        questionElement.innerText = `${num1} × ${num2}`;
+        answerInput.value = '';
+        answerInput.focus();
+    }
+
+    function checkAnswer() {
+        const userAnswer = parseInt(answerInput.value);
+
+        if (userAnswer === correctAnswer) {
+            feedbackElement.innerText = "Way to go! 🎉";
+            feedbackElement.className = "correct";
+            score += 10;
+            streak++;
+        } else {
+            feedbackElement.innerText = `Oops! The answer was ${correctAnswer}`;
+            feedbackElement.className = "wrong";
+            streak = 0; // Reset streak on wrong answer
+        }
+
+        // Update score board
+        scoreElement.innerText = score;
+        streakElement.innerText = streak;
+
+        // Wait 1.5 seconds then show a new question
+        setTimeout(() => {
+            feedbackElement.innerText = "";
+            generateQuestion();
+        }, 1500);
+    }
+
+    // Allow pressing "Enter" key to submit
+    answerInput.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    });
+
+    // Start the game for the first time
+    generateQuestion();
+</script>
+
+</body>
+</html>
