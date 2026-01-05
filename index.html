@@ -4,77 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multiplication Master</title>
-    <style>
-        /* CSS: Making it look fun and kid-friendly */
-        body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background-color: #f0f8ff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        #game-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 350px;
-            border: 5px solid #4CAF50;
-        }
-
-        h1 { color: #ff6f61; }
-
-        #question {
-            font-size: 48px;
-            margin: 20px 0;
-            color: #333;
-        }
-
-        input {
-            font-size: 24px;
-            width: 100px;
-            padding: 10px;
-            text-align: center;
-            border: 3px solid #ddd;
-            border-radius: 10px;
-            outline: none;
-        }
-
-        button {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.1s;
-        }
-
-        button:active { transform: scale(0.95); }
-
-        #feedback {
-            margin-top: 20px;
-            font-weight: bold;
-            height: 24px;
-        }
-
-        #score-board {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #555;
-        }
-
-        .correct { color: #4CAF50; }
-        .wrong { color: #f44336; }
-    </style>
+    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 
@@ -109,8 +39,8 @@
     // Function to generate a new question
     function generateQuestion() {
         // You can change "12" to "5" for younger kids
-        num1 = Math.floor(Math.random() * 12) + 1;
-        num2 = Math.floor(Math.random() * 12) + 1;
+        num1 = Math.floor(Math.random() * 10) + 1;
+        num2 = Math.floor(Math.random() * 10) + 1;
         correctAnswer = num1 * num2;
         
         questionElement.innerText = `${num1} × ${num2}`;
